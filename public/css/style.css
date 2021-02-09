@@ -1,0 +1,20 @@
+.main-block, .tag-select {
+    width: 100%;
+}
+
+.tag-title {
+    margin: 0 auto;
+}
+
+.items-top {
+    flex-direction: column;
+}
+
+.make-csv {
+    padding: 16px;
+    background-color: #5897fb;
+    color: #ffffff;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
