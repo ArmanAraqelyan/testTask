@@ -13,6 +13,6 @@ class Items extends Model
     public $timestamps = false;
 
     public function tag() {
-        return $this->belongsToMany(Tags::class);
+        return $this->belongsToMany(Tags::class, 'item_tag_link', 'item_id', 'tag_id');
     }
 }

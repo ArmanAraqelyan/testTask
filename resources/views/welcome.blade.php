@@ -396,48 +396,56 @@
     </style>
 </head>
 <body class="antialiased">
-<div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
+<form action="{{ route('tagExport') }}" method="POST">
+    @csrf
+    <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
+        <div class="main-block mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
+            <div class="grid grid-cols-1 md:grid-cols-2">
+                <div class="p-6">
+                    <div class="flex items-center">
+                        <div class="text-lg leading-7 font-semibold tag-title"><span
+                                class="underline text-gray-900 dark:text-white">Включающие теги</span></div>
+                    </div>
 
-    <div class="main-block mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
-        <div class="grid grid-cols-1 md:grid-cols-2">
-            <div class="p-6">
-                <div class="flex items-center">
-                    <div class="text-lg leading-7 font-semibold tag-title"><span
-                            class="underline text-gray-900 dark:text-white">Включающие теги</span></div>
-                </div>
-
-                <div class="ml-12">
-                    <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                        <select class="tag-select" name="isset[]" multiple="multiple">
-                            @foreach($tags as $tag)
-                                <option class="tag-{{ $tag->id }}" value="{{ $tag->id }}">{{ $tag->name }}</option>
-                            @endforeach
-                        </select>
+                    <div class="ml-12">
+                        <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
+                            <select class="tag-select select2" name="isset[]" multiple="multiple">
+                                @foreach($tags as $tag)
+                                    <option class="tag-{{ $tag->id }}" value="{{ $tag->id }}">{{ $tag->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('isset')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l">
-                <div class="flex items-center">
-                    <div class="text-lg leading-7 font-semibold tag-title"><span
-                            class="underline text-gray-900 dark:text-white">Исключающие теги</span></div>
-                </div>
-                <div class="ml-12">
-                    <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                        <select class="tag-select" name="except[]" multiple="multiple">
-                            @foreach($tags as $tag)
-                                <option class="tag-{{ $tag->id }}" value="{{ $tag->id }}">{{ $tag->name }}</option>
-                            @endforeach
-                        </select>
+                <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l">
+                    <div class="flex items-center">
+                        <div class="text-lg leading-7 font-semibold tag-title"><span
+                                class="underline text-gray-900 dark:text-white">Исключающие теги</span></div>
+                    </div>
+                    <div class="ml-12">
+                        <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
+                            <select class="tag-select select2" name="except[]" multiple="multiple">
+                                @foreach($tags as $tag)
+                                    <option class="tag-{{ $tag->id }}" value="{{ $tag->id }}">{{ $tag->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('except')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="btn-block">
+            <button class="make-csv">Отправить</button>
+        </div>
     </div>
-    <div class="btn-block">
-        <button class="make-csv">Отправить</button>
-    </div>
-</div>
+</form>
 
 <script src="{{ asset('js/jquery-3.5.1.min.js') }}"></script>
 <script src="{{ asset('js/select2.min.js') }}"></script>

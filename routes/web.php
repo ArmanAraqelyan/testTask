@@ -15,3 +15,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [WelcomeController::class, 'index']);
+Route::post('tag_export', [WelcomeController::class, 'tagExport'])->name('tagExport');
