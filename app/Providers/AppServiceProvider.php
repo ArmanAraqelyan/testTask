@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Services\ExportService\ExportCSV;
+use App\Services\ExportService\ExportInterface;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 
@@ -14,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(ExportInterface::class, ExportCSV::class);
     }
 
     /**

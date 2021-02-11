@@ -399,6 +399,9 @@
 <form action="{{ route('tagExport') }}" method="POST">
     @csrf
     <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
+        @error('emptyData')
+        <div class="invalid-feedback d-block">{{ $message }}</div>
+        @enderror
         <div class="main-block mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
             <div class="grid grid-cols-1 md:grid-cols-2">
                 <div class="p-6">
@@ -442,7 +445,7 @@
             </div>
         </div>
         <div class="btn-block">
-            <button class="make-csv">Отправить</button>
+            <button class="make-csv">Экспорт</button>
         </div>
     </div>
 </form>
